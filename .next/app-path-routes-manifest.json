@@ -1,9 +1,0 @@
-{
-  "/favicon.ico/route": "/favicon.ico",
-  "/page": "/",
-  "/@hero/page": "/",
-  "/api/comment/route": "/api/comment",
-  "/post/[slug]/page": "/post/[slug]",
-  "/api/post/route": "/api/post",
-  "/api/user/route": "/api/user"
-}
