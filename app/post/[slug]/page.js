@@ -1,4 +1,3 @@
-'use client'
 import CommentCard from "@/app/components/CommentCard";
 import CommentForm from "@/app/components/CommentForm";
 import Image from "next/image";
