@@ -55,6 +55,14 @@
         "chunks": [],
         "async": false
       }
+    },
+    "(app-client)/./app/components/CommentForm.js": {
+      "*": {
+        "id": "(sc_client)/./app/components/CommentForm.js",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
     }
   },
   "edgeSSRModuleMapping": {},
@@ -143,7 +151,7 @@
       "id": "(app-client)/./node_modules/next/dist/client/image-component.js",
       "name": "*",
       "chunks": [
-        "app/page:static/chunks/app/page.js"
+        "app/post/[slug]/page:static/chunks/app/post/[slug]/page.js"
       ],
       "async": false
     },
@@ -151,7 +159,7 @@
       "id": "(app-client)/./node_modules/next/dist/client/image-component.js",
       "name": "*",
       "chunks": [
-        "app/page:static/chunks/app/page.js"
+        "app/post/[slug]/page:static/chunks/app/post/[slug]/page.js"
       ],
       "async": false
     },
@@ -159,7 +167,7 @@
       "id": "(app-client)/./node_modules/next/dist/client/link.js",
       "name": "*",
       "chunks": [
-        "app/page:static/chunks/app/page.js"
+        "app/layout:static/chunks/app/layout.js"
       ],
       "async": false
     },
@@ -167,7 +175,7 @@
       "id": "(app-client)/./node_modules/next/dist/client/link.js",
       "name": "*",
       "chunks": [
-        "app/page:static/chunks/app/page.js"
+        "app/layout:static/chunks/app/layout.js"
       ],
       "async": false
     },
@@ -186,17 +194,25 @@
         "app/layout:static/chunks/app/layout.js"
       ],
       "async": false
+    },
+    "E:\\nextjs\\assign-02\\app\\components\\CommentForm.js": {
+      "id": "(app-client)/./app/components/CommentForm.js",
+      "name": "*",
+      "chunks": [
+        "app/post/[slug]/page:static/chunks/app/post/[slug]/page.js"
+      ],
+      "async": false
     }
   },
   "entryCSSFiles": {
+    "E:\\nextjs\\assign-02\\app\\page": [],
+    "E:\\nextjs\\assign-02\\app\\loading": [],
     "E:\\nextjs\\assign-02\\app\\layout": [
       "static/css/app/layout.css"
     ],
-    "E:\\nextjs\\assign-02\\app\\loading": [],
-    "E:\\nextjs\\assign-02\\app\\post\\[slug]\\loading": [],
-    "E:\\nextjs\\assign-02\\app\\post\\[slug]\\page": [],
-    "E:\\nextjs\\assign-02\\app\\page": [],
     "E:\\nextjs\\assign-02\\app\\@hero\\page": [],
-    "E:\\nextjs\\assign-02\\app\\@hero\\loading": []
+    "E:\\nextjs\\assign-02\\app\\@hero\\loading": [],
+    "E:\\nextjs\\assign-02\\app\\post\\[slug]\\loading": [],
+    "E:\\nextjs\\assign-02\\app\\post\\[slug]\\page": []
   }
 }
