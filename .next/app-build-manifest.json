@@ -1,0 +1,52 @@
+{
+  "pages": {
+    "/layout": [
+      "static/chunks/webpack-f9d0c6ad68aa9767.js",
+      "static/chunks/bce60fc1-8c4748991edb1ec4.js",
+      "static/chunks/698-1321e6d13d35448d.js",
+      "static/chunks/main-app-9a25410bddb1eb4a.js",
+      "static/chunks/29-9f0846cba56750e5.js",
+      "static/chunks/95-fe2423899271355b.js",
+      "static/css/9bdd98023401a11e.css",
+      "static/chunks/app/layout-b1e934bf8a5930aa.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-f9d0c6ad68aa9767.js",
+      "static/chunks/bce60fc1-8c4748991edb1ec4.js",
+      "static/chunks/698-1321e6d13d35448d.js",
+      "static/chunks/main-app-9a25410bddb1eb4a.js",
+      "static/chunks/29-9f0846cba56750e5.js",
+      "static/chunks/95-fe2423899271355b.js",
+      "static/chunks/app/page-01a62b73796f2a13.js"
+    ],
+    "/loading": [
+      "static/chunks/webpack-f9d0c6ad68aa9767.js",
+      "static/chunks/bce60fc1-8c4748991edb1ec4.js",
+      "static/chunks/698-1321e6d13d35448d.js",
+      "static/chunks/main-app-9a25410bddb1eb4a.js",
+      "static/chunks/app/loading-609fb4372e0f8e42.js"
+    ],
+    "/@hero/page": [
+      "static/chunks/webpack-f9d0c6ad68aa9767.js",
+      "static/chunks/bce60fc1-8c4748991edb1ec4.js",
+      "static/chunks/698-1321e6d13d35448d.js",
+      "static/chunks/main-app-9a25410bddb1eb4a.js",
+      "static/chunks/app/@hero/page-3fed9143ccf65fa4.js"
+    ],
+    "/post/[slug]/page": [
+      "static/chunks/webpack-f9d0c6ad68aa9767.js",
+      "static/chunks/bce60fc1-8c4748991edb1ec4.js",
+      "static/chunks/698-1321e6d13d35448d.js",
+      "static/chunks/main-app-9a25410bddb1eb4a.js",
+      "static/chunks/29-9f0846cba56750e5.js",
+      "static/chunks/app/post/[slug]/page-41a24f45d7c92766.js"
+    ],
+    "/post/[slug]/loading": [
+      "static/chunks/webpack-f9d0c6ad68aa9767.js",
+      "static/chunks/bce60fc1-8c4748991edb1ec4.js",
+      "static/chunks/698-1321e6d13d35448d.js",
+      "static/chunks/main-app-9a25410bddb1eb4a.js",
+      "static/chunks/app/post/[slug]/loading-50220b8df415e4b0.js"
+    ]
+  }
+}
