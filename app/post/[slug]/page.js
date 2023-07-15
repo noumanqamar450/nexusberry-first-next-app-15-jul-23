@@ -4,6 +4,12 @@ import Image from "next/image";
 import { Suspense } from "react";
 import Loading from "./loading";
 
+async function getPostAll() {
+    const res = await fetch(`http://localhost:3000/api/post`);
+    const post = await res.json();
+    return post.data;
+}
+
 async function getPost(slug) {
     const res = await fetch(`http://localhost:3000/api/post?slug=${slug}`);
     const post = await res.json();
@@ -28,6 +34,11 @@ export async function generateMetadata({ params }) {
         title: post.title,
         description: post.content.slice(0, 100)
     }
+}
+
+export async function generateStaticParams() {
+    const post = await getPostAll();
+    return post.map((p) => ({ slug: p.slug }));
 }
 
 export default async function Home({ params }) {
@@ -88,4 +99,3 @@ export default async function Home({ params }) {
         </Suspense>
     )
 }
-
