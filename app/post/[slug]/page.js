@@ -65,6 +65,15 @@ export default async function Home({ params }) {
 
                 <div className="max-w-[800px] mx-auto py-10">
 
+                    {/* Categories */}
+                    <ul className="float-right flex gap-5 mb-5 list-disc list-inside">
+                        {
+                            post.category.map((c, i) => (
+                                <li key={i}>{c}</li>
+                            ))
+                        }
+                    </ul>
+
                     {/* date */}
                     <p className="text-lg mb-5">{post.date}</p>
 
