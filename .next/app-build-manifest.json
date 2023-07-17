@@ -17,13 +17,6 @@
       "static/chunks/main-app-9a25410bddb1eb4a.js",
       "static/chunks/app/loading-609fb4372e0f8e42.js"
     ],
-    "/@hero/page": [
-      "static/chunks/webpack-a587602f7608b5b2.js",
-      "static/chunks/bce60fc1-1bdfbd669332dc7c.js",
-      "static/chunks/698-d7458314db3e3d19.js",
-      "static/chunks/main-app-9a25410bddb1eb4a.js",
-      "static/chunks/app/@hero/page-3fed9143ccf65fa4.js"
-    ],
     "/page": [
       "static/chunks/webpack-a587602f7608b5b2.js",
       "static/chunks/bce60fc1-1bdfbd669332dc7c.js",
@@ -32,6 +25,13 @@
       "static/chunks/29-fdb1d3c1df447fb2.js",
       "static/chunks/95-656850eb76f62d8c.js",
       "static/chunks/app/page-01a62b73796f2a13.js"
+    ],
+    "/@hero/page": [
+      "static/chunks/webpack-a587602f7608b5b2.js",
+      "static/chunks/bce60fc1-1bdfbd669332dc7c.js",
+      "static/chunks/698-d7458314db3e3d19.js",
+      "static/chunks/main-app-9a25410bddb1eb4a.js",
+      "static/chunks/app/@hero/page-3fed9143ccf65fa4.js"
     ],
     "/post/[slug]/loading": [
       "static/chunks/webpack-a587602f7608b5b2.js",
