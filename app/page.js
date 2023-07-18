@@ -4,12 +4,15 @@ import Loading from './loading';
 
 
 async function getPost() {
-  const res = await fetch(`http://localhost:3000/api/post`);
+  const res = await fetch(`http://localhost:3000/api/post`, {
+    cache: 'force-cache'
+  });
   const post = await res.json();
   return post.data;
 }
 
-export default async function Home() {
+export default async function Home(props) {
+  console.log(props);
   const post = await getPost();
   return (
     <main className='grid gap-4 grid-cols-1 mb-[80px] md:grid-cols-2 lg:grid-cols-3'>
