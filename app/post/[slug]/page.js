@@ -12,25 +12,19 @@ import Loading from "./loading";
 
 
 async function getPost(slug) {
-    const res = await fetch(`http://localhost:3000/api/post?slug=${slug}`,{
-        cache:'no-store'
-    });
+    const res = await fetch(`http://localhost:3000/api/post?slug=${slug}`);
     const post = await res.json();
     return post.data;
 }
 
 async function getUser(id) {
-    const res = await fetch(`http://localhost:3000/api/user?id=${id}`, {
-        cache: 'no-store'
-    });
+    const res = await fetch(`http://localhost:3000/api/user?id=${id}`);
     const data = await res.json();
     return data.users;
 }
 
 async function getComment(id) {
-    const res = await fetch(`http://localhost:3000/api/comment?postId=${id}`, {
-        cache: 'no-store'
-    });
+    const res = await fetch(`http://localhost:3000/api/comment?postId=${id}`);
     const data = await res.json();
     return data.comments;
 }

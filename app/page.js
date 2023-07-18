@@ -4,9 +4,7 @@ import Loading from './loading';
 
 
 async function getPost() {
-  const res = await fetch(`http://localhost:3000/api/post`, {
-    cache: 'force-cache'
-  });
+  const res = await fetch(`http://localhost:3000/api/post`);
   const post = await res.json();
   return post.data;
 }
