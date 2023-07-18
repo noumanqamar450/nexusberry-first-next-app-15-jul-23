@@ -11,8 +11,7 @@ async function getPost() {
   return post.data;
 }
 
-export default async function Home(props) {
-  console.log(props);
+export default async function Home() {
   const post = await getPost();
   return (
     <main className='grid gap-4 grid-cols-1 mb-[80px] md:grid-cols-2 lg:grid-cols-3'>
