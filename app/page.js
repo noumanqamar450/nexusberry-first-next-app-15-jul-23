@@ -2,8 +2,12 @@ import { Suspense } from 'react';
 import PostCard from './components/PostCard'
 import Loading from './loading';
 
+export const dynamic = "force-dynamic";
+
 async function getPost() {
-  const res = await fetch(`http://localhost:3000/api/post`);
+  const res = await fetch(`http://localhost:3000/api/post`, {
+    cache: 'no-store'
+  });
   const post = await res.json();
   return post.data;
 }
