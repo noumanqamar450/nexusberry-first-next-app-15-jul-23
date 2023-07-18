@@ -4,27 +4,35 @@ import Image from "next/image";
 import { Suspense } from "react";
 import Loading from "./loading";
 
-async function getPostAll() {
-    const res = await fetch(`http://localhost:3000/api/post`);
-    const post = await res.json();
-    return post.data;
-}
+// async function getPostAll() {
+//     const res = await fetch(`http://localhost:3000/api/post`,{
+//         cache:'force-cache'
+//     });
+//     const post = await res.json();
+//     return post.data;
+// }
 
 
 async function getPost(slug) {
-    const res = await fetch(`http://localhost:3000/api/post?slug=${slug}`);
+    const res = await fetch(`http://localhost:3000/api/post?slug=${slug}`,{
+        cache:'no-cache'
+    });
     const post = await res.json();
     return post.data;
 }
 
 async function getUser(id) {
-    const res = await fetch(`http://localhost:3000/api/user?id=${id}`);
+    const res = await fetch(`http://localhost:3000/api/user?id=${id}`, {
+        cache: 'no-cache'
+    });
     const data = await res.json();
     return data.users;
 }
 
 async function getComment(id) {
-    const res = await fetch(`http://localhost:3000/api/comment?postId=${id}`);
+    const res = await fetch(`http://localhost:3000/api/comment?postId=${id}`, {
+        cache: 'no-cache'
+    });
     const data = await res.json();
     return data.comments;
 }
@@ -106,10 +114,10 @@ export default async function Post({ params }) {
     )
 }
 
-export async function generateStaticParams() {
-    const posts = await getPostAll();
+// export async function generateStaticParams() {
+//     const posts = await getPostAll();
 
-    return posts.map((post) => ({
-        slug: post.slug,
-    }))
-}
+//     return posts.map((post) => ({
+//         slug: post.slug,
+//     }))
+// }
