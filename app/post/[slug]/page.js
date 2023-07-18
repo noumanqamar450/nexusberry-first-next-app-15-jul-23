@@ -4,11 +4,11 @@ import Image from "next/image";
 import { Suspense } from "react";
 import Loading from "./loading";
 
-// async function getPostAll() {
-//     const res = await fetch(`http://localhost:3000/api/post`);
-//     const post = await res.json();
-//     return post.data;
-// }
+async function getPostAll() {
+    const res = await fetch(`http://localhost:3000/api/post`);
+    const post = await res.json();
+    return post.data;
+}
 
 
 async function getPost(slug) {
@@ -106,10 +106,10 @@ export default async function Post({ params }) {
     )
 }
 
-// export async function generateStaticParams() {
-//     const posts = await getPostAll();
+export async function generateStaticParams() {
+    const posts = await getPostAll();
 
-//     return posts.map((post) => ({
-//         slug: post.slug,
-//     }))
-// }
+    return posts.map((post) => ({
+        slug: post.slug,
+    }))
+}
