@@ -10,7 +10,6 @@ import Loading from "./loading";
 //     return post.data;
 // }
 
-export const dynamic = "force-dynamic";
 
 async function getPost(slug) {
     const res = await fetch(`http://localhost:3000/api/post?slug=${slug}`, {
