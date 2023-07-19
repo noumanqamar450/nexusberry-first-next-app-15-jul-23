@@ -1,16 +1,10 @@
+
 import CommentCard from "@/app/components/CommentCard";
 import CommentForm from "@/app/components/CommentForm";
 import Image from "next/image";
 import { Suspense } from "react";
 import Loading from "./loading";
 
-// async function getPostAll() {
-//     const res = await fetch(`http://localhost:3000/api/post`,{
-//         cache:'force-cache'
-//     });
-//     const post = await res.json();
-//     return post.data;
-// }
 
 
 async function getPost(slug) {
@@ -52,27 +46,28 @@ export default async function Post({ params }) {
     const user = await getUser(post.userId);
     const comment = await getComment(post.postId);
 
+
     return (
         <Suspense fallback={<Loading/>}>
             <div className="w-full">
-                <h1 className="text-4xl font-bold my-10 md:text-6xl">{post.title}</h1>
+                <h1 className="text-4xl font-bold my-10 md:text-6xl">{post?.title}</h1>
                 
                 {/* Post Author */}
                 <div className="flex items-center gap-4 mb-10">
                     <Image
-                        src={user.image}
-                        alt={user.name}
+                        src={user?.image}
+                        alt={user?.name}
                         width={60}
                         height={60}
                         className="rounded-full"
                     />
-                    <h3 className="text-xl font-semibold">{user.name}</h3>
+                    <h3 className="text-xl font-semibold">{user?.name}</h3>
                 </div>
 
                 {/* Feature image */}
                 <Image
-                    src={post.image}
-                    alt={post.title}
+                    src={post?.image}
+                    alt={post?.title}
                     width={1000}
                     height={500}
                     className="w-full"
@@ -83,17 +78,17 @@ export default async function Post({ params }) {
                     {/* Categories */}
                     <ul className="float-right flex gap-5 mb-5 list-disc list-inside">
                         {
-                            post.category.map((c, i) => (
+                            post?.category.map((c, i) => (
                                 <li key={i}>{c}</li>
                             ))
                         }
                     </ul>
 
                     {/* date */}
-                    <p className="text-lg mb-5">{post.date}</p>
+                    <p className="text-lg mb-5">{post?.date}</p>
 
                     {/* Content */}
-                    <p className="text-lg text-justify">{post.content}</p>
+                    <p className="text-lg text-justify">{post?.content}</p>
 
                     <hr className="my-10"/>
 
@@ -104,7 +99,7 @@ export default async function Post({ params }) {
                     <CommentForm/>
 
                     {
-                        comment.map(c => (
+                        comment?.map(c => (
                             <CommentCard key={c.commentId} data={c}/>
                         ))
                     }
@@ -114,10 +109,4 @@ export default async function Post({ params }) {
     )
 }
 
-// export async function generateStaticParams() {
-//     const posts = await getPostAll();
 
-//     return posts.map((post) => ({
-//         slug: post.slug,
-//     }))
-// }
