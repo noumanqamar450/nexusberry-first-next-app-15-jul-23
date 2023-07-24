@@ -1,70 +1,92 @@
-const { NextResponse } = require("next/server");
+import { NextResponse } from 'next/server'
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
 
-export async function GET(request){
+
+export async function GET(request) {
+
     const { searchParams } = new URL(request.url);
-    const id = searchParams.get('postId');
+    const id = Number(searchParams.get('id'));
+    const postId = Number(searchParams.get('postId'));
 
-    let comments = [
-        {
-            commentId: 1,
-            name:'User Name 1',
-            comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est.',
-            postId: 1
-        },
-        {
-            commentId: 2,
-            name: 'User Name 2',
-            comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est.',
-            postId: 1
-        },
-        {
-            commentId: 3,
-            name: 'User Name 1',
-            comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est.',
-            postId: 2
-        },
-        {
-            commentId: 4,
-            name: 'User Name 2',
-            comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est.',
-            postId: 2
-        },
-        {
-            commentId: 5,
-            name: 'User Name 3',
-            comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est.',
-            postId: 2
-        },
-        {
-            commentId: 6,
-            name: 'User Name 4',
-            comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est.',
-            postId: 2
-        },
-        {
-            commentId: 7,
-            name: 'User Name 1',
-            comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est.',
-            postId: 3
-        },
-        {
-            commentId: 8,
-            name: 'User Name 2',
-            comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est.',
-            postId: 3
-        },
-        {
-            commentId: 9,
-            name: 'User Name 3',
-            comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est.',
-            postId: 3
-        },
-    ]
+    try {
+        let comments = null;
 
-    if (id) {
-        comments = comments.filter(c => c.postId == id);
+        
+
+        if (id !== 0) {
+            comments = await prisma.comment.findUnique({
+                where: { id },
+                include: {
+                    post: {
+                        select: {
+                            id: true,
+                            title: true,
+                        },
+                    },
+                },
+            });
+        } else if (postId !== 0) {
+            comments = await prisma.comment.findMany({
+                orderBy: { createdAt: "desc" },
+                where: { postId },
+            });
+        } else {
+            comments = await prisma.comment.findMany({
+                orderBy: { createdAt: "desc" },
+                include: {
+                    post: {
+                        select: {
+                            id: true,
+                            title: true,
+                        },
+                    },
+                },
+            });
+        }
+
+        return NextResponse.json({ data: comments })
+
+    } catch (error) {
+        return NextResponse.json({ data: error })
     }
 
-    return NextResponse.json({ comments });
+}
 
+export async function POST(request) {
+
+    const { name, email, comment, postId } = await request.json();
+
+    try {
+
+        const comments = await prisma.comment.create({
+            data: {
+                name,
+                email,
+                comment,
+                postId,
+                createdAt: new Date()
+            }
+        });
+
+        return NextResponse.json({ data: comments })
+
+    } catch (error) {
+        return NextResponse.json({ error })
+    }
+
+}
+
+export async function DELETE(request) {
+    const { searchParams } = new URL(request.url);
+    const id = Number(searchParams.get('id'));
+
+    try {
+        const res = await prisma.comment.delete({
+            where: { id },
+        })
+        return NextResponse.json({ res: true, data: res }, { status: 200 })
+    } catch(error){
+        return NextResponse.json({ res: false }, { status : 404})
+    }
 }

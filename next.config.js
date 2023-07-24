@@ -17,7 +17,13 @@ const nextConfig = {
                 hostname: 'next-blog-starter.vercel.app',
                 port: '',
             },
+            {
+                protocol: 'https',
+                hostname: 'res.cloudinary.com',
+                port: '',
+            },
         ],
+        domains: ["res.cloudinary.com"],
     },
 }
 

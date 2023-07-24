@@ -16,11 +16,15 @@ export default function Header() {
             </Link>
         </div>
         <div className="menu self-center">
-            <ul className='hidden sm:flex gap-5 content-center font-medium cursor-pointer'>
-                <li className='transition hover:text-green-500'>Menu Link</li>
-                <li className='transition hover:text-green-500'>Menu Link</li>
-                <li className='transition hover:text-green-500'>Menu Link</li>
-                <li className='transition hover:text-green-500'>Menu Link</li>
+            <ul className='hidden sm:flex gap-5 items-center content-center font-medium cursor-pointer'>
+                <li className='transition hover:text-green-500'>
+                    <Link href="/">Home</Link>
+                </li>
+                <li className='transition hover:text-green-500'>About</li>
+                <li className='transition hover:text-green-500'>Contact</li>
+                <li className='transition bg-slate-500 text-white hover:bg-slate-600 rounded-md'>
+                    <Link href="/dashboard" className='p-4 py-2 inline-block'>Dashboard</Link>
+                </li>
             </ul>
         </div>
     </header>

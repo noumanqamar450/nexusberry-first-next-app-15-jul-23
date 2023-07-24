@@ -1,46 +1,112 @@
 import { NextResponse } from 'next/server'
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
+
 
 export async function GET(request) {
-    
+
     const { searchParams } = new URL(request.url);
-    const slug = searchParams.get('slug');
+    const id = Number(searchParams.get('id'));
 
-    let data = [
-        {
-            postId: 1,
-            title: 'Dynamic Routing and Static Generation',
-            slug: 'dynamic-routing-and-static-generation',
-            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus. Praesent elementum facilisis leo vel fringilla. Congue mauris rhoncus aenean vel. Egestas sed tempus urna et pharetra pharetra massa massa ultricies. Venenatis cras sed felis eget velit.Consectetur libero id faucibus nisl tincidunt.Gravida in fermentum et sollicitudin ac orci phasellus egestas tellus.Volutpat consequat mauris nunc congue nisi vitae.Id aliquet risus feugiat in ante metus dictum at tempor.Sed blandit libero volutpat sed cras.Sed odio morbi quis commodo odio aenean sed adipiscing.Velit euismod in pellentesque massa placerat.Mi bibendum neque egestas congue quisque egestas diam in arcu.Nisi lacus sed viverra tellus in.Nibh cras pulvinar mattis nunc sed.Luctus accumsan tortor posuere ac ut consequat semper viverra.Fringilla ut morbi tincidunt augue interdum velit euismod.',
-            image:'https://images.pexels.com/photos/14958090/pexels-photo-14958090/free-photo-of-aerial-view-of-hills-in-the-death-valley.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-            category: ['Tech', 'Next Js'],
-            date: 'March 08, 2023',
-            userId: 1
-        },
-        {
-            postId: 2,
-            title: 'Learn How to Pre-render Pages Using Static Generation with Next.js',
-            slug: 'learn-how-to-pre-render-pages-using-static-generation-with-nextjs',
-            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus. Praesent elementum facilisis leo vel fringilla. Congue mauris rhoncus aenean vel. Egestas sed tempus urna et pharetra pharetra massa massa ultricies. Venenatis cras sed felis eget velit.Consectetur libero id faucibus nisl tincidunt.Gravida in fermentum et sollicitudin ac orci phasellus egestas tellus.Volutpat consequat mauris nunc congue nisi vitae.Id aliquet risus feugiat in ante metus dictum at tempor.Sed blandit libero volutpat sed cras.Sed odio morbi quis commodo odio aenean sed adipiscing.Velit euismod in pellentesque massa placerat.Mi bibendum neque egestas congue quisque egestas diam in arcu.Nisi lacus sed viverra tellus in.Nibh cras pulvinar mattis nunc sed.Luctus accumsan tortor posuere ac ut consequat semper viverra.Fringilla ut morbi tincidunt augue interdum velit euismod. Velit euismod in pellentesque massa placerat.Mi bibendum neque egestas congue quisque egestas diam in arcu.Nisi lacus sed viverra tellus in.Nibh cras pulvinar mattis nunc sed.Luctus accumsan tortor posuere ac ut consequat semper viverra.Fringilla ut morbi tincidunt augue interdum velit euismod.',
-            image:'https://images.pexels.com/photos/14213364/pexels-photo-14213364.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-            category: ['Tech', 'Next Js', 'React Js'],
-            date: 'March 16, 2023',
-            userId: 2
-        },
-        {
-            postId: 3,
-            title: 'Preview Mode for Static Generation',
-            slug: 'preview-mode-for-static-generation',
-            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus. Praesent elementum facilisis leo vel fringilla. Congue mauris rhoncus aenean vel. Egestas sed tempus urna et pharetra pharetra massa massa ultricies. Venenatis cras sed felis eget velit.Consectetur libero id faucibus nisl tincidunt.Gravida in fermentum et sollicitudin ac orci phasellus egestas tellus.Volutpat consequat mauris nunc congue nisi vitae.Id aliquet risus feugiat in ante metus dictum at tempor.Sed blandit libero volutpat sed cras.Sed odio morbi quis commodo odio aenean sed adipiscing.Velit euismod in pellentesque massa placerat.Mi bibendum neque egestas congue quisque egestas diam in arcu.Nisi lacus sed viverra tellus in.Nibh cras pulvinar mattis nunc sed.Luctus accumsan tortor posuere ac ut consequat semper viverra.Fringilla ut morbi tincidunt augue interdum velit euismod. Velit euismod in pellentesque massa placerat.Mi bibendum neque egestas congue quisque egestas diam in arcu.Nisi lacus sed viverra tellus in.Nibh cras pulvinar mattis nunc sed.Luctus accumsan tortor posuere ac ut consequat semper viverra.Fringilla ut morbi tincidunt augue interdum velit euismod. Velit euismod in pellentesque massa placerat.Mi bibendum neque egestas congue quisque egestas diam in arcu.Nisi lacus sed viverra tellus in.Nibh cras pulvinar mattis nunc sed.Luctus accumsan tortor posuere ac ut consequat semper viverra.Fringilla ut morbi tincidunt augue interdum velit euismod.',
-            image:'https://images.pexels.com/photos/13876506/pexels-photo-13876506.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-            category: ['Tech', 'Vue Js'],
-            date: 'March 25, 2023',
-            userId: 1
+    try {
+        let posts = null;
+
+        if (id !== 0) {
+            posts = await prisma.post.findUnique({
+                where: { id, published: true, },
+                include: {
+                    author: {
+                        select: {
+                            name: true,
+                            image: true,
+                        },
+                    },
+                    comment: true,
+                },
+            });
+        } else {
+            posts = await prisma.post.findMany({
+                where: { published: true, },
+                orderBy: { updatedAt: 'desc' },
+                include: {
+                    author: {
+                        select: {
+                            name: true,
+                            image: true,
+                        },
+                    },
+                    comment: true,
+                },
+            });
         }
-    ]
 
-    if (slug) {
-        data = data.find(d => d.slug == slug);
+        return NextResponse.json({ data: posts })
+
+    } catch (error) {
+        return NextResponse.json({ data: error })
     }
 
-    return NextResponse.json({ data })
 }
+
+export async function POST(request) {
+
+    const { title, content, image, category, published, authorId } = await request.json();
+
+    try {
+
+        let post = await prisma.post.create({
+            data: {
+                title, 
+                content, 
+                image, 
+                category, 
+                published, 
+                authorId,
+                createdAt: new Date(),
+                updatedAt: new Date()
+            }
+        });
+
+        return NextResponse.json({ data: post })
+
+    } catch (error) {
+        return NextResponse.json({ error })
+    }
+
+}
+
+export async function PUT(request) {
+
+    const { searchParams } = new URL(request.url);
+    const id = Number(searchParams.get('id'));
+
+    const { title, content, image, category, published, authorId } = await request.json();
+
+
+    try {
+        await prisma.post.update({
+            where: { id },
+            data: { title, content, image, category, published, authorId, updatedAt: new Date() },
+        });
+
+        return NextResponse.json({ data: 'ok' }, { status: 200 });
+
+    } catch (error) {
+        return NextResponse.json(error, { status: 400 });
+    }
+}
+
+export async function DELETE(request) {
+    const { searchParams } = new URL(request.url);
+    const id = Number(searchParams.get('id'));
+
+    try {
+        const res = await prisma.post.delete({
+            where: { id },
+        })
+        return NextResponse.json({ res: true, data: res }, { status: 200 })
+    } catch (error) {
+        return NextResponse.json({ res: false }, { status: 404 })
+    }
+}
+
