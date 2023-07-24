@@ -12,6 +12,21 @@ yarn dev
 pnpm dev
 ```
 
+Second, create .env file and create variable. use online postgresgl [Neon](https://neon.tech)
+
+```env
+DATABASE_URL=[postgres://NEON_URL]
+DIRECT_URL=[postgres://NEON_URL]
+BASE_URL="http://localhost:3000/"
+NEXT_PUBLIC_BASE_URL="http://localhost:3000/"
+```
+
+third, create .env.local file and create variable for [Cloudinary](https://cloudinary.com/). create account and add 
+CLOUDINARY_NAME
+```env
+NEXT_PUBLIC_CLOUDINARY_NAME=[CLOUDINARY_NAME]
+```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.

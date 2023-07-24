@@ -1,5 +1,11 @@
 {
-  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/page": "app/page.js",
-  "/api/post/route": "app/api/post/route.js"
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/post/[id]/page": "app/post/[id]/page.js",
+  "/api/post/route": "app/api/post/route.js",
+  "/api/comment/route": "app/api/comment/route.js",
+  "/api/post/all/route": "app/api/post/all/route.js",
+  "/(dashboard)/dashboard/users/page": "app/(dashboard)/dashboard/users/page.js",
+  "/(dashboard)/dashboard/comments/page": "app/(dashboard)/dashboard/comments/page.js",
+  "/(dashboard)/dashboard/posts/page": "app/(dashboard)/dashboard/posts/page.js"
 }
